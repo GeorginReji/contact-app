@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="./assets/scripts/scripts.js" defer></script>
+    <title>contact-app</title>
+</head>
+<body>
+    <div class="maincontainer">
+        <section class="sidebar">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search...">
+            </div>
+            <div class="contact-wrapper">
+                <h3>All Contact</h3>
+                <div class="contact-container">
+                    <img src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&format=svg" alt="">
+                    <div class="contact-details">
+                        <p>John Doe</p>
+                        <p>98798675</p>
+                    </div>
+                </div>
+                <div class="contact-container">
+                    <img src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&format=svg" alt="">
+                    <div class="contact-details">
+                        <p>John Doe</p>
+                        <p>98798675</p>
+                    </div>
+                </div>
+                <div class="contact-container">
+                    <img src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&format=svg" alt="">
+                    <div class="contact-details">
+                        <p>John Doe</p>
+                        <p>98798675</p>
+                    </div>
+                </div>
+                <div class="contact-container">
+                    <img src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&format=svg" alt="">
+                    <div class="contact-details">
+                        <p>John Doe</p>
+                        <p>98798675</p>
+                    </div>
+                </div>
+                <div class="contact-container">
+                    <img src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&format=svg" alt="">
+                    <div class="contact-details">
+                        <p>John Doe</p>
+                        <p>98798675</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <main class="main">
+            <div class="main-display" data-display="contact-view">
+                <img src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&format=svg&size=128" alt="">
+                <div class="icon-wrapper">
+                    <div class="icon-container">
+                        <i class="ri-phone-fill"></i>
+                    </div>
+                    <div class="icon-container">
+                        <i class="ri-question-answer-fill"></i>
+                    </div>
+                    <div class="icon-container">
+                        <i class="ri-whatsapp-line"></i>
+                    </div>
+                    <div class="icon-container">
+                        <i class="ri-share-fill"></i>
+                    </div>
+                </div>
+                <div class="main-details">
+                    <p>John Doe</p>
+                    <p>98798675</p>
+                </div>
+                <div class="add-contact-wrapper">
+                    <button id="btnCreateContact"><i class="ri-add-line"></i></button>
+                </div>
+                <div class="more-content-wrapper">
+                    <button class="more-content"><i class="ri-more-2-line"></i></button>
+                    <div class="dropdown-content">
+                        <div class="dropdown-item">
+                            <a href="#">Edit</a>
+                        </div>
+                        <div class="dropdown-item">
+                            <a href="#">Block</a>
+                        </div>
+                        <div class="dropdown-item">
+                            <a href="#">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="display-hidden" data-display="new-contact">
+                <div class="contact-img-contrainer">
+                    <div class="contact-image">
+                        <i class="ri-user-fill"></i>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-field">                    
+                        <label for="">First Name</label>
+                        <input class="lined-input" type="text">
+                    </div>
+                    <div class="input-field">                    
+                        <label for="">Last Name</label>
+                        <input class="lined-input" type="text">
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-field">                    
+                        <label for="">Phone Number</label>
+                        <input class="lined-input" type="text">
+                    </div>
+                    <div class="input-field">                    
+                        <label for="">Description</label>
+                        <input class="lined-input" type="text">
+                    </div>
+                </div>
+                <div class="btn-new-contact">
+                    <button class="btnAdd">Add To contact</button>
+                    <button class="btnAdd" id="btn-cancel">Cancel</button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
