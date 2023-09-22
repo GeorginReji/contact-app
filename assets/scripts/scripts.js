@@ -5,7 +5,7 @@ let btnCancel = document.getElementById("btn-cancel");
 let contactDisplay = document.querySelector(".contact-wrapper");
 let btnAddContact = document.getElementById("addcontact");
 let noContactMsg = document.querySelector('[data-message]');
-
+let allContact = [];
 class Person {
     constructor(firstName, lastName, phoneNo, description) {
         this.firstName = firstName;
@@ -54,6 +54,7 @@ btnAddContact.addEventListener('click', () => {
     console.log(fname, lname, phno, desc); 
     const person = new Person(fname, lname, phno, desc);
     person.showContact();
+    allContact.push(person);
     document.getElementById("fName").value = "";
     document.getElementById("lName").value = "";
     document.getElementById("phno").value = ""; 
