@@ -26,6 +26,7 @@ body {
     border: none;
     border-radius: 30px;
     font-size: 16px;
+    outline: none;
 }
 
 .profile-container {
@@ -66,6 +67,7 @@ body {
     display: flex;
     flex-direction: row;
     padding: 10px;
+    cursor: pointer;
 }
 .contact-container img {
     height: 45px;
