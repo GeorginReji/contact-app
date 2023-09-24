@@ -5,6 +5,7 @@ let btnCancel = document.getElementById("btn-cancel");
 let contactDisplay = document.querySelector(".contact-wrapper");
 let btnAddContact = document.getElementById("addcontact");
 let noContactMsg = document.querySelector('[data-message]');
+let singleContact = "";
 let allContact = [];
 class Person {
     constructor(firstName, lastName, phoneNo, description) {
@@ -13,21 +14,27 @@ class Person {
         this.phoneNo = phoneNo;
         this.description = description; 
     }
-    showContact() {
+    addContact() {
         noContactMsg.remove();
-        let contact = ` <div class="contact-container">
+            let contact = ` <div class="contact-container" data-contact="${this.phoneNo}">
                             <img src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&format=svg" alt="">
                             <div class="contact-details">
                                 <p>${this.firstName} ${this.lastName}</p>
                                 <p>${this.phoneNo}</p>
                             </div>
                         </div>`
-        contactDisplay.innerHTML += contact;
+                        contactDisplay.innerHTML += contact;       
+  
     }
-    // viewContact() {
-    //     let contactDis = ``
-    // }
 }
+
+function displayContact(obj) {
+    contactView.classList.replace('display-hidden','main-display');
+    inputForm.classList.replace('main-form','display-hidden');
+    document.querySelector('[data-display-name]').innerHTML = obj.firstName.concat(" ",obj.lastName);
+    document.querySelector('[data-display-phno]').innerHTML = obj.phoneNo;
+}
+
 // Display new contact form
 btnNewContact.addEventListener('click', (e) => {
     contactView.classList.replace('main-display','display-hidden');
@@ -51,12 +58,32 @@ btnAddContact.addEventListener('click', () => {
     let lname = document.getElementById("lName").value; 
     let phno = document.getElementById("phno").value; 
     let desc = document.getElementById("desc").value;
-    console.log(fname, lname, phno, desc); 
     const person = new Person(fname, lname, phno, desc);
-    person.showContact();
     allContact.push(person);
+    person.addContact(person);
     document.getElementById("fName").value = "";
     document.getElementById("lName").value = "";
     document.getElementById("phno").value = ""; 
     document.getElementById("desc").value = "";
-})
+});
+
+contactDisplay.addEventListener('click', function(event) {
+    if (event.target.matches('.contact-container')) {
+        const clickedDiv = event.target;
+        const contactValue = clickedDiv.getAttribute('data-contact');
+        const selectObj = allContact.filter((item) => {
+            if(item.phoneNo == contactValue) {
+                return item;
+            }
+        })
+        displayContact(selectObj[0]);
+        console.log(selectObj);
+        // console.log('Clicked div:', event,clickedDiv,contactValue);
+    }   
+});
+
+// singleContact.addEventListener('click', (e) => {
+//     console.log(singleContact);
+//     alert("div clicked");
+// });
+
