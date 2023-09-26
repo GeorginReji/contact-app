@@ -14,8 +14,8 @@
             <div class="search-bar">
                 <input type="text" id="search-input" placeholder="Search...">
             </div>
+            <h3>All Contact</h3>
             <div class="contact-wrapper">
-                <h3>All Contact</h3>
                 <div class="contact-container">
                     <div data-message class="contact-details">
                         <p>No Contacts Available...</p>
@@ -43,6 +43,7 @@
                 <div class="main-details">
                     <input id="displayName" disabled class="editable-fieldset" type="text">
                     <input id="displayPhno" disabled class="editable-fieldset" type="text">
+                    <input id="hiddenId" disabled class="display-hidden" type="text">
                     <div class="btn-new-contact">
                         <button id="btnSave" class="display-hidden">Save</button>
                         <button id="btnCancel" class="display-hidden">Cancel</button>
@@ -57,7 +58,7 @@
                         <div class="dropdown-item">
                             <a href="#">Block</a>
                         </div>
-                        <div class="dropdown-item">
+                        <div id="delete" class="dropdown-item">
                             <a href="#">Delete</a>
                         </div>
                     </div>

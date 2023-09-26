@@ -5,45 +5,41 @@ let btnCancel = document.getElementById("btn-cancel");
 let contactDisplay = document.querySelector(".contact-wrapper");
 let btnAddContact = document.getElementById("addcontact");
 let noContactMsg = document.querySelector('[data-message]');
-let singleContact = "";
 let allContact = [];
 const dName = document.getElementById('displayName');
 const dPhno = document.getElementById('displayPhno');
 class Person {
-    constructor(firstName, lastName, phoneNo, description) {
+    constructor(id, firstName, lastName, phoneNo, description) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNo = phoneNo;
         this.description = description; 
     }
-    addContact() {
-        noContactMsg.remove();
-            let contact = ` <div class="contact-container" data-contact="${this.phoneNo}">
-                            <img src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&format=svg" alt="">
-                            <div class="contact-details">
-                                <p>${this.firstName} ${this.lastName}</p>
-                                <p>${this.phoneNo}</p>
-                            </div>
-                        </div>`
-                        contactDisplay.innerHTML += contact;       
-  
-    }
-}
+} 
 
-function displayContact(obj) {
-    contactView.classList.replace('display-hidden','main-display');
-    inputForm.classList.replace('main-form','display-hidden');
-    document.getElementById('displayName').value = obj.firstName.concat(" ",obj.lastName);
-    document.getElementById('displayPhno').value = obj.phoneNo;
+function addContact() {
+    let contactList ="";
+    allContact.forEach(element => {
+        let contact = ` <div class="contact-container" data-contact="${element.phoneNo}">
+        <img src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&format=svg" alt="">
+        <div class="contact-details">
+            <p>${element.firstName} ${element.lastName}</p>
+            <p>${element.phoneNo}</p>
+        </div>
+    </div>`
+    contactList += contact 
+    });  
+    return contactList
 }
 
 // Display new contact form
-btnNewContact.addEventListener('click', (e) => {
+btnNewContact.addEventListener('click', () => {
     contactView.classList.replace('main-display','display-hidden');
     inputForm.classList.replace('display-hidden','main-form');
-})
+}) 
 // cancel New contact
-btnCancel.addEventListener('click', (e) => {
+btnCancel.addEventListener('click', () => {
     contactView.classList.replace('display-hidden','main-display');
     inputForm.classList.replace('main-form','display-hidden');
 })
@@ -54,21 +50,25 @@ document.getElementById('phno').addEventListener('input', (e) => {
     e.target.value = numericValue;
 })
 
-// Display new contact
+// Display new contact sidebar
 btnAddContact.addEventListener('click', () => {
+    const randomNum = Math.floor(Math.random() * 10000);
     let fname = document.getElementById("fName").value; 
     let lname = document.getElementById("lName").value; 
     let phno = document.getElementById("phno").value; 
     let desc = document.getElementById("desc").value;
-    const person = new Person(fname, lname, phno, desc);
+    const person = new Person(randomNum, fname, lname, phno, desc);
     allContact.push(person);
-    person.addContact(person);
+    const allList = addContact();
+    console.log(allContact);
+    contactDisplay.innerHTML = allList; 
     document.getElementById("fName").value = "";
     document.getElementById("lName").value = "";
     document.getElementById("phno").value = ""; 
     document.getElementById("desc").value = "";
 });
 
+// Display contact main
 contactDisplay.addEventListener('click', function(event) {
     if (event.target.matches('.contact-container')) {
         const clickedDiv = event.target;
@@ -78,12 +78,15 @@ contactDisplay.addEventListener('click', function(event) {
                 return item;
             }
         })
-        displayContact(selectObj[0]);
-        console.log(selectObj);
-        // console.log('Clicked div:', event,clickedDiv,contactValue);
+    contactView.classList.replace('display-hidden','main-display');
+    inputForm.classList.replace('main-form','display-hidden');
+    document.getElementById('hiddenId').value = selectObj[0].id;
+    document.getElementById('displayName').value = selectObj[0].firstName.concat(" ",selectObj[0].lastName);
+    document.getElementById('displayPhno').value = selectObj[0].phoneNo;
     }   
 });
 
+// Edit mode active
 document.getElementById('edit').addEventListener('click', () => {
     dName.disabled = false;
     dPhno.disabled = false;
@@ -93,6 +96,7 @@ document.getElementById('edit').addEventListener('click', () => {
     document.getElementById('btnCancel').classList.replace("display-hidden", "btnAdd");
 })
 
+// cancel Edit
 document.getElementById('btnCancel').addEventListener('click', () => {
     dName.disabled = true;
     dPhno.disabled = true;
@@ -103,5 +107,27 @@ document.getElementById('btnCancel').addEventListener('click', () => {
 })
 
 document.getElementById('btnSave').addEventListener('click', () => {
-    
+const hiddenId =  document.getElementById('hiddenId').value;
+ allContact.forEach((element) => {
+       if(element.id == hiddenId) {
+           element.firstName = dName.value.split(" ")[0];
+           element.lastName = dName.value.split(" ")[1];
+           element.phoneNo = dPhno.value;
+       }
+    })
+    contactDisplay.innerHTML = addContact(); 
+    dName.disabled = true;
+    dPhno.disabled = true;
+    dName.style.borderBottom = 'none'
+    dPhno.style.borderBottom = 'none'
+    document.getElementById('btnSave').classList.replace("btnAdd", "display-hidden");
+    document.getElementById('btnCancel').classList.replace("btnAdd", "display-hidden");
+})
+
+document.getElementById('delete').addEventListener('click', () => {
+    console.log("Testing.....");
+    const hiddenId =  document.getElementById('hiddenId').value;
+    allContact = allContact.filter((element) => element.id != hiddenId);
+    contactDisplay.innerHTML = addContact();
+    contactView.classList.replace('main-display','display-hidden'); 
 })
