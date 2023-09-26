@@ -24,7 +24,7 @@
             </div>
         </section>
         <main class="main">
-            <div class="main-display" data-display="contact-view">
+            <div class="display-hidden" data-display="contact-view">
                 <img src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&format=svg&size=128" alt="">
                 <div class="icon-wrapper">
                     <div class="icon-container">
@@ -41,16 +41,17 @@
                     </div>
                 </div>
                 <div class="main-details">
-                    <p data-display-name>John Doe</p>
-                    <p data-display-phno>98798675</p>
-                </div>
-                <div class="add-contact-wrapper">
-                    <button id="btnCreateContact"><i class="ri-add-line"></i></button>
+                    <input id="displayName" disabled class="editable-fieldset" type="text">
+                    <input id="displayPhno" disabled class="editable-fieldset" type="text">
+                    <div class="btn-new-contact">
+                        <button id="btnSave" class="display-hidden">Save</button>
+                        <button id="btnCancel" class="display-hidden">Cancel</button>
+                    </div>   
                 </div>
                 <div class="more-content-wrapper">
                     <button class="more-content"><i class="ri-more-2-line"></i></button>
                     <div class="dropdown-content">
-                        <div class="dropdown-item">
+                        <div id="edit" class="dropdown-item">
                             <a href="#">Edit</a>
                         </div>
                         <div class="dropdown-item">
@@ -61,6 +62,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="add-contact-wrapper">
+                <button id="btnCreateContact"><i class="ri-add-line"></i></button>
             </div>
             <div class="display-hidden" data-display="new-contact">
                 <div class="contact-img-contrainer">

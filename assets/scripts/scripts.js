@@ -7,6 +7,8 @@ let btnAddContact = document.getElementById("addcontact");
 let noContactMsg = document.querySelector('[data-message]');
 let singleContact = "";
 let allContact = [];
+const dName = document.getElementById('displayName');
+const dPhno = document.getElementById('displayPhno');
 class Person {
     constructor(firstName, lastName, phoneNo, description) {
         this.firstName = firstName;
@@ -31,8 +33,8 @@ class Person {
 function displayContact(obj) {
     contactView.classList.replace('display-hidden','main-display');
     inputForm.classList.replace('main-form','display-hidden');
-    document.querySelector('[data-display-name]').innerHTML = obj.firstName.concat(" ",obj.lastName);
-    document.querySelector('[data-display-phno]').innerHTML = obj.phoneNo;
+    document.getElementById('displayName').value = obj.firstName.concat(" ",obj.lastName);
+    document.getElementById('displayPhno').value = obj.phoneNo;
 }
 
 // Display new contact form
@@ -82,8 +84,24 @@ contactDisplay.addEventListener('click', function(event) {
     }   
 });
 
-// singleContact.addEventListener('click', (e) => {
-//     console.log(singleContact);
-//     alert("div clicked");
-// });
+document.getElementById('edit').addEventListener('click', () => {
+    dName.disabled = false;
+    dPhno.disabled = false;
+    dName.style.borderBottom = '1px solid #ccc'
+    dPhno.style.borderBottom = '1px solid #ccc'
+    document.getElementById('btnSave').classList.replace("display-hidden", "btnAdd");
+    document.getElementById('btnCancel').classList.replace("display-hidden", "btnAdd");
+})
 
+document.getElementById('btnCancel').addEventListener('click', () => {
+    dName.disabled = true;
+    dPhno.disabled = true;
+    dName.style.borderBottom = 'none'
+    dPhno.style.borderBottom = 'none'
+    document.getElementById('btnSave').classList.replace("btnAdd", "display-hidden");
+    document.getElementById('btnCancel').classList.replace("btnAdd", "display-hidden");
+})
+
+document.getElementById('btnSave').addEventListener('click', () => {
+    
+})

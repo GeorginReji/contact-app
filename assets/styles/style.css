@@ -95,10 +95,11 @@ body {
 .main img {
     border-radius: 50%;
 } 
-.main-details p {
-    font-size: 20px;
-    margin: 10px;
-    color: #fff;
+.main-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 .main-display {
     display: flex;
@@ -219,10 +220,24 @@ label {
     border-bottom: 1px solid #fff;
     padding: 5px;
     outline: none; 
-    width: 100%; 
+    width: auto; 
     background-color: #162A59;
     color: #fff;
     font-size: medium;
+}
+.editable-fieldset {
+    border: none; 
+    /* border-bottom: 1px solid #fff; */
+    padding: 5px;
+    outline: none; 
+    width: auto; 
+    background-color: #162A59;
+    color: #fff;
+    font-size: medium;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 .btn-new-contact {
     width: 100%;
