@@ -18,9 +18,9 @@ class Person {
     }
 } 
 
-function addContact() {
+function addContact(contacts) {
     let contactList ="";
-    allContact.forEach(element => {
+    contacts.forEach(element => {
         let contact = ` <div class="contact-container" data-contact="${element.phoneNo}">
         <img src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&format=svg" alt="">
         <div class="contact-details">
@@ -59,7 +59,7 @@ btnAddContact.addEventListener('click', () => {
     let desc = document.getElementById("desc").value;
     const person = new Person(randomNum, fname, lname, phno, desc);
     allContact.push(person);
-    const allList = addContact();
+    const allList = addContact(allContact);
     console.log(allContact);
     contactDisplay.innerHTML = allList; 
     document.getElementById("fName").value = "";
@@ -115,7 +115,7 @@ const hiddenId =  document.getElementById('hiddenId').value;
            element.phoneNo = dPhno.value;
        }
     })
-    contactDisplay.innerHTML = addContact(); 
+    contactDisplay.innerHTML = addContact(allContact); 
     dName.disabled = true;
     dPhno.disabled = true;
     dName.style.borderBottom = 'none'
@@ -128,6 +128,18 @@ document.getElementById('delete').addEventListener('click', () => {
     console.log("Testing.....");
     const hiddenId =  document.getElementById('hiddenId').value;
     allContact = allContact.filter((element) => element.id != hiddenId);
-    contactDisplay.innerHTML = addContact();
+    contactDisplay.innerHTML = addContact(allContact);
     contactView.classList.replace('main-display','display-hidden'); 
+})
+
+document.getElementById('search-input').addEventListener('input', (e) => {
+    let searchKey = e.target.value;
+    let sidebarList = allContact.filter((element) => element.firstName.includes(searchKey));
+    // allContact = sidebarList;
+    if (searchKey.length === 0) {
+        contactDisplay.innerHTML = addContact(allContact);
+    }
+    else {
+        contactDisplay.innerHTML = addContact(sidebarList);
+    }
 })
